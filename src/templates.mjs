@@ -210,7 +210,7 @@ export function experience(ctx) {
           <h3>${esc(e.company)}</h3>
           <span class="period">${esc(ctx.t(e.period))}</span>
         </div>
-        <p class="job-role">${esc(ctx.t(e.role))}${e.location ? ` <span class="sub">· ${esc(ctx.t(e.location))}</span>` : ''}</p>
+        <p class="job-role">${esc(ctx.t(e.role))}${e.location ? ` <span class="sub">· ${esc(ctx.t(e.location))}</span>` : ''}${e.tag ? ` <span class="tag">${esc(ctx.t(e.tag))}</span>` : ''}</p>
         <ul class="bullets">
           ${e.bullets.map((b) => `<li>${esc(ctx.t(b))}</li>`).join('\n          ')}
         </ul>

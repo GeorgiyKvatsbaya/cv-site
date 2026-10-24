@@ -137,6 +137,7 @@ export default {
       role: { en: 'Senior Business Intelligence Developer', ru: 'Senior Business Intelligence Developer' },
       period: { en: 'Sep 2023 — Aug 2024', ru: 'сен 2023 — авг 2024' },
       location: { en: 'Tbilisi', ru: 'Тбилиси' },
+      tag: { en: 'concurrent with Fundbox', ru: 'параллельно с Fundbox' },
       bullets: [
         { en: 'Built C-level financial dashboards for P&L, cash flow, accounts receivable and debt across business units; developed SQL data sources and optimized Tableau performance.', ru: 'Построил финансовые дашборды для C-level: P&L, cash flow, дебиторская задолженность и другие показатели по бизнес-юнитам; разрабатывал источники данных на SQL и ускорял Tableau.' },
         { en: 'Administered Tableau Server: upgrades, performance and load management, plugins and connectors, access coordination, licensing and REST / Webhook API integrations.', ru: 'Администрировал Tableau Server: обновления, производительность и нагрузка, плагины и коннекторы, доступы, лицензии и интеграции через REST / Webhook API.' },
