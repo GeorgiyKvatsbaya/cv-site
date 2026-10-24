@@ -16,7 +16,7 @@ const yearsSince = (year, month) => {
 };
 
 const LINKEDIN = 'https://www.linkedin.com/in/georgiy-kvatsbaya-ba0645230/';
-const RESUME = '/Georgiy_Kvatsbaya_Resume.pdf';
+const RESUME = { en: '/Georgiy_Kvatsbaya_Resume.pdf', ru: '/Georgiy_Kvatsbaya_Resume_RU.pdf' };
 
 export default {
   // Production URL without trailing slash — used for canonical / hreflang / OG.
@@ -26,7 +26,7 @@ export default {
 
   profile: {
     name: { en: 'Georgiy Kvatsbaya', ru: 'Георгий Квацбая' },
-    role: { en: 'Senior Analytics Engineer · Senior BI Engineer', ru: 'Senior Analytics Engineer · Senior BI Engineer' },
+    role: { en: 'Senior Analytics Engineer · Senior BI Engineer', ru: 'Senior BI Engineer · Analytics Engineer' },
     tagline: ['snowflake', 'dbt', 'sql', 'tableau'],
     location: { en: 'Tbilisi, Georgia · open to remote / relocation', ru: 'Тбилиси, Грузия · открыт к удалёнке и релокации' },
   },
@@ -46,7 +46,8 @@ export default {
     email: 'kvatsbayageorgiy@gmail.com',
     linkedin: LINKEDIN,
     // Files in public/. A missing file hides the "CV" button (with a build warning).
-    cv: { en: RESUME, ru: RESUME },
+    // The CV button downloads the file matching the page language.
+    cv: RESUME,
     note: {
       en: 'Open to remote roles and relocation. The best way to reach me is email or LinkedIn — happy to talk about analytics engineering, data modeling and BI.',
       ru: 'Открыт к удалённой работе и релокации. Лучше всего писать на почту или в LinkedIn — с удовольствием обсужу analytics engineering, моделирование данных и BI.',
@@ -137,7 +138,7 @@ export default {
       period: { en: 'Sep 2023 — Aug 2024', ru: 'сен 2023 — авг 2024' },
       location: { en: 'Tbilisi', ru: 'Тбилиси' },
       bullets: [
-        { en: 'Built C-level financial dashboards for P&L, cash flow, accounts receivable and debt across business units; developed SQL data sources and optimized Tableau performance.', ru: 'Построил финансовые дашборды для C-level: P&L, денежный поток, дебиторская задолженность и долг по бизнес-юнитам; разрабатывал источники данных на SQL и ускорял Tableau.' },
+        { en: 'Built C-level financial dashboards for P&L, cash flow, accounts receivable and debt across business units; developed SQL data sources and optimized Tableau performance.', ru: 'Построил финансовые дашборды для C-level: P&L, cash flow, дебиторская задолженность и другие показатели по бизнес-юнитам; разрабатывал источники данных на SQL и ускорял Tableau.' },
         { en: 'Administered Tableau Server: upgrades, performance and load management, plugins and connectors, access coordination, licensing and REST / Webhook API integrations.', ru: 'Администрировал Tableau Server: обновления, производительность и нагрузка, плагины и коннекторы, доступы, лицензии и интеграции через REST / Webhook API.' },
       ],
       stack: ['Tableau', 'Tableau Server', 'SQL'],
@@ -189,7 +190,7 @@ export default {
   education: [
     {
       school: { en: 'HSE University (Higher School of Economics)', ru: 'НИУ ВШЭ (Высшая школа экономики)' },
-      degree: { en: 'Applied Mathematics (coursework)', ru: 'Прикладная математика (обучение)' },
+      degree: { en: 'Applied Mathematics (coursework)', ru: 'Прикладная математика (обучение без получения диплома)' },
       period: '2016 — 2020',
     },
   ],
