@@ -57,7 +57,7 @@ export default {
     { icon: 'linkedin', title: 'LinkedIn', sub: { en: 'experience & recommendations', ru: 'опыт и рекомендации' }, url: LINKEDIN },
     { icon: 'github', title: 'GitHub', sub: '@GeorgiyKvatsbaya', url: 'https://github.com/GeorgiyKvatsbaya' },
     { icon: 'email', title: 'Email', sub: { en: 'for work inquiries', ru: 'по рабочим вопросам' }, email: true },
-    { icon: 'telegram', title: 'Telegram', sub: 'TODO: @handle', url: 'TODO: https://t.me/handle' },
+    { icon: 'telegram', title: 'Telegram', sub: '@kvatsbaya', url: 'https://t.me/kvatsbaya' },
   ],
 
   // Grouped stack. `featured: true` items show up as icons on the home page.
