@@ -16,6 +16,7 @@ const UI = {
   contact: { en: 'contact', ru: 'контакты' },
   experienceTitle: { en: 'Experience', ru: 'Опыт' },
   experienceSub: { en: 'where I worked and what I shipped', ru: 'где работал и что сделал' },
+  education: { en: 'education', ru: 'образование' },
   stackTitle: { en: 'Stack', ru: 'Стек' },
   stackSub: { en: 'tools I use day to day', ru: 'инструменты, с которыми работаю каждый день' },
   years: { en: 'yrs', ru: 'лет' },
@@ -214,11 +215,17 @@ export function experience(ctx) {
         </ul>
         ${e.stack?.length ? `<p class="chips">${e.stack.map((s) => `<span class="chip">${esc(s)}</span>`).join('')}</p>` : ''}
       </li>`).join('\n');
+  const education = site.education?.length
+    ? section(ui(ctx, 'education'), `      <div class="specs">
+        ${site.education.map((ed) => `<div class="row"><span class="v">${esc(ctx.t(ed.school))}<span class="sub">${esc(ctx.t(ed.degree))}</span></span><span class="meta">${esc(ctx.t(ed.period))}</span></div>`).join('\n        ')}
+      </div>`)
+    : '';
   const body = [
     profileHeader(ctx, { title: ui(ctx, 'experienceTitle'), tagline: esc(ui(ctx, 'experienceSub')), avatar: false }),
     nav(ctx),
     `    <ol class="timeline reveal">\n${items}\n    </ol>`,
-  ].join('\n\n');
+    education,
+  ].filter(Boolean).join('\n\n');
   return layout(ctx, { title: `${ui(ctx, 'experienceTitle')} — ${ctx.t(site.profile.name)}`, body, page: 'experience' });
 }
 

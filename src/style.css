@@ -151,7 +151,7 @@ html.js .reveal.in { opacity: 1; transform: none; transition: opacity .45s ease,
 /* ── Stack tiles ────────────────────────────────────────────── */
 .tiles {
   list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); gap: 8px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 8px;
 }
 .tile {
   display: flex; flex-direction: column; align-items: center; gap: 7px;
