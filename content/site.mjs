@@ -5,8 +5,8 @@
 //   (the build prints a warning).
 // • Anything starting with "TODO" is a placeholder — the build lists them.
 // • `icon` is a simple-icons slug (https://simpleicons.org). If a brand is
-//   missing there (dbt, Tableau…), a text badge is rendered instead,
-//   or drop your own SVG into public/icons/<slug>.svg.
+//   missing there, a text badge is rendered instead, or drop your own SVG
+//   into public/icons/<slug>.svg.
 // ─────────────────────────────────────────────────────────────
 
 // Full years since a month, recalculated on every build.
@@ -16,6 +16,7 @@ const yearsSince = (year, month) => {
 };
 
 const LINKEDIN = 'https://www.linkedin.com/in/georgiy-kvatsbaya-ba0645230/';
+const RESUME = '/Georgiy_Kvatsbaya_Resume.pdf';
 
 export default {
   // Production URL without trailing slash — used for canonical / hreflang / OG.
@@ -25,30 +26,30 @@ export default {
 
   profile: {
     name: { en: 'Georgiy Kvatsbaya', ru: 'Георгий Квацбая' },
-    role: { en: 'Senior BI Engineer · Analytics Engineer', ru: 'Senior BI Engineer · Analytics Engineer' },
-    tagline: ['dbt', 'tableau', 'sql'],
-    location: { en: 'Tbilisi, Georgia', ru: 'Тбилиси, Грузия' },
+    role: { en: 'Senior Analytics Engineer · Senior BI Engineer', ru: 'Senior Analytics Engineer · Senior BI Engineer' },
+    tagline: ['snowflake', 'dbt', 'sql', 'tableau'],
+    location: { en: 'Tbilisi, Georgia · open to remote / relocation', ru: 'Тбилиси, Грузия · открыт к удалёнке и релокации' },
   },
 
   about: {
-    en: `Senior BI Engineer at Fundbox, working on finance data for Accounting and Capital Markets. ${yearsSince(2019, 10)} years in analytics across fintech, edtech, real estate and IT services: dbt data models, Airflow pipelines, data marts and Tableau dashboards — from zero to production. I like working closely with analysts, engineers and business stakeholders to turn data into decisions.`,
-    ru: `Senior BI Engineer в Fundbox, работаю с финансовыми данными для бухгалтерии и Capital Markets. ${yearsSince(2019, 10)} лет в аналитике — финтех, эдтех, недвижимость и IT-сервисы: модели в dbt, пайплайны в Airflow, витрины данных и дашборды в Tableau от нуля до продакшена. Люблю работать в связке с аналитиками, разработчиками и бизнесом, чтобы данные превращались в решения.`,
+    en: `BI / Analytics Engineer with ${yearsSince(2019, 10)}+ years of experience building financial analytics, data models, reporting platforms and executive dashboards across fintech, banking, real estate and technology. Strong in Snowflake, dbt Cloud, SQL, Tableau and Python, with hands-on ownership of finance reconciliation, Capital Markets reporting, ELT design, BI platform administration and stakeholder-facing analytics.`,
+    ru: `BI / Analytics Engineer с опытом ${yearsSince(2019, 10)}+ лет: финансовая аналитика, модели данных, платформы отчётности и дашборды для руководства в финтехе, банкинге, недвижимости и IT. Сильные стороны — Snowflake, dbt Cloud, SQL, Tableau и Python; отвечал за финансовую сверку, отчётность для Capital Markets, проектирование ELT, администрирование BI-платформы и аналитику для бизнес-заказчиков.`,
   },
 
   highlights: [
     { value: `${yearsSince(2019, 10)}+`, label: { en: 'years in BI & data', ru: 'лет в BI и данных' } },
     { value: '6', label: { en: 'companies', ru: 'компаний' } },
-    { value: 'HSE', label: { en: 'Applied Math, BSc', ru: 'прикладная математика' } },
+    { value: '~50', label: { en: 'ELT pipelines built', ru: 'ELT-пайплайнов построено' } },
   ],
 
   contact: {
     email: 'kvatsbayageorgiy@gmail.com',
     linkedin: LINKEDIN,
     // Files in public/. A missing file hides the "CV" button (with a build warning).
-    cv: { en: '/cv-en.pdf', ru: '/cv-ru.pdf' },
+    cv: { en: RESUME, ru: RESUME },
     note: {
-      en: 'The best way to reach me is email or LinkedIn — happy to talk about data modeling, BI and analytics engineering.',
-      ru: 'Лучше всего писать на почту или в LinkedIn — с удовольствием обсужу моделирование данных, BI и analytics engineering.',
+      en: 'Open to remote roles and relocation. The best way to reach me is email or LinkedIn — happy to talk about analytics engineering, data modeling and BI.',
+      ru: 'Открыт к удалённой работе и релокации. Лучше всего писать на почту или в LinkedIn — с удовольствием обсужу analytics engineering, моделирование данных и BI.',
     },
   },
 
@@ -60,50 +61,57 @@ export default {
     { icon: 'telegram', title: 'Telegram', sub: '@kvatsbaya', url: 'https://t.me/kvatsbaya' },
   ],
 
-  // Grouped stack. `featured: true` items show up as icons on the home page.
+  // Grouped stack. `featured: true` items show up as icons on the home page (8 fit one row on desktop).
   stack: [
     {
-      group: { en: 'Modeling & SQL', ru: 'Моделирование и SQL' },
+      group: { en: 'Analytics engineering', ru: 'Analytics engineering' },
       items: [
-        { name: 'dbt', icon: 'dbt', featured: true, years: `${yearsSince(2024, 2)}+`, note: { en: 'financial data models for Accounting & Capital Markets', ru: 'финансовые модели данных для бухгалтерии и Capital Markets' } },
+        { name: 'Snowflake', icon: 'snowflake', featured: true, years: `${yearsSince(2024, 2)}+`, note: { en: 'financial data models for Accounting & Capital Markets, Streamlit in Snowflake', ru: 'финансовые модели для бухгалтерии и Capital Markets, Streamlit в Snowflake' } },
+        { name: 'dbt Cloud', icon: 'dbt', featured: true, years: `${yearsSince(2024, 2)}+`, note: { en: 'dimensional modeling, data marts, tests', ru: 'dimensional modeling, витрины данных, тесты' } },
         { name: 'SQL', icon: 'sql', featured: true, years: yearsSince(2019, 10), note: { en: 'main tool since day one; query optimization in Greenplum', ru: 'основной инструмент с первого дня; оптимизация запросов в Greenplum' } },
+        { name: 'Monte Carlo', icon: 'montecarlo', note: { en: 'data quality & observability', ru: 'качество данных и observability' } },
+      ],
+    },
+    {
+      group: { en: 'BI & reporting', ru: 'BI и отчётность' },
+      items: [
+        { name: 'Tableau', icon: 'tableau', featured: true, years: yearsSince(2019, 10), note: { en: 'financial reporting, executive dashboards, performance tuning', ru: 'финансовая отчётность, дашборды для руководства, оптимизация производительности' } },
+        { name: 'Tableau Server', icon: 'tableau', note: { en: 'administration, licensing, REST / Webhook APIs, automated refreshes', ru: 'администрирование, лицензии, REST / Webhook API, автоматические обновления' } },
+        { name: 'Streamlit', icon: 'streamlit', featured: true, note: { en: 'Streamlit in Snowflake: cash-flow reconciliation dashboard', ru: 'Streamlit в Snowflake: дашборд сверки денежных потоков' } },
+      ],
+    },
+    {
+      group: { en: 'Pipelines & orchestration', ru: 'Пайплайны и оркестрация' },
+      items: [
+        { name: 'Airflow', icon: 'apacheairflow', featured: true, note: { en: 'deployed from scratch, reusable pipeline-factory structure', ru: 'развернул с нуля, переиспользуемая структура pipeline factory' } },
+        { name: 'Apache NiFi', icon: 'apachenifi' },
       ],
     },
     {
       group: { en: 'Warehouses & engines', ru: 'Хранилища и движки' },
       items: [
-        { name: 'Snowflake', icon: 'snowflake', featured: true },
-        { name: 'Databricks', icon: 'databricks', featured: true },
-        { name: 'ClickHouse', icon: 'clickhouse', featured: true },
+        { name: 'BigQuery', icon: 'googlebigquery', featured: true, note: { en: 'MySQL → BigQuery ingestion and mart pipelines', ru: 'загрузка MySQL → BigQuery и пайплайны витрин' } },
+        { name: 'MySQL', icon: 'mysql' },
+        { name: 'Databricks', icon: 'databricks' },
+        { name: 'ClickHouse', icon: 'clickhouse' },
         { name: 'Greenplum', icon: 'greenplum' },
         { name: 'Spark SQL', icon: 'apachespark' },
         { name: 'Hadoop / Hive', icon: 'apachehive' },
       ],
     },
     {
-      group: { en: 'Orchestration', ru: 'Оркестрация' },
+      group: { en: 'Languages', ru: 'Языки программирования' },
       items: [
-        { name: 'Airflow', icon: 'apacheairflow', featured: true, note: { en: 'deployed from scratch, pipeline-factory structure', ru: 'развернул с нуля, структура pipeline factory' } },
-      ],
-    },
-    {
-      group: { en: 'BI', ru: 'BI' },
-      items: [
-        { name: 'Tableau', icon: 'tableau', featured: true, years: yearsSince(2019, 10), note: { en: 'dashboards from zero to production, performance tuning', ru: 'дашборды от нуля до продакшена, оптимизация производительности' } },
-        { name: 'Tableau Server', icon: 'tableau', note: { en: 'administration, REST / Webhooks / Document APIs, automated refreshes', ru: 'администрирование, REST / Webhooks / Document API, автоматические обновления' } },
-      ],
-    },
-    {
-      group: { en: 'Languages', ru: 'Языки' },
-      items: [
-        { name: 'Python', icon: 'python', featured: true, years: yearsSince(2019, 10), note: { en: 'pandas, NumPy, API integrations, automation', ru: 'pandas, NumPy, интеграции с API, автоматизация' } },
+        { name: 'Python', icon: 'python', featured: true, years: yearsSince(2019, 10), note: { en: 'pandas, NumPy, API integrations, report automation', ru: 'pandas, NumPy, интеграции с API, автоматизация отчётов' } },
       ],
     },
     {
       group: { en: 'Tools', ru: 'Инструменты' },
       items: [
-        { name: 'Git', icon: 'git' },
         { name: 'GitHub', icon: 'github' },
+        { name: 'Jira', icon: 'jira' },
+        { name: 'Confluence', icon: 'confluence' },
+        { name: 'Claude', icon: 'claude', note: { en: 'AI-assisted analytics', ru: 'AI-ассистированная аналитика' } },
       ],
     },
   ],
@@ -116,12 +124,12 @@ export default {
       period: { en: 'Feb 2024 — present', ru: 'фев 2024 — н.в.' },
       location: { en: 'Tbilisi', ru: 'Тбилиси' },
       bullets: [
-        { en: 'Build financial data models in dbt for the Accounting and Capital Markets teams.', ru: 'Разрабатываю финансовые модели данных в dbt для команд бухгалтерии и Capital Markets.' },
-        { en: 'Rewrote legacy processes to be more reliable and faster.', ru: 'Переписал существующие процессы — надёжнее и быстрее.' },
-        { en: 'Support Tableau dashboards, gather requirements from business stakeholders and work with backend engineers on data issues I find.', ru: 'Поддерживаю дашборды в Tableau, собираю требования у бизнеса и разбираю найденные баги в данных с бэкенд-разработчиками.' },
-        { en: 'Contributed to a Slack bot powered by an LLM that answers business users’ questions about the dbt data model.', ru: 'Участвовал в создании Slack-бота на LLM, который отвечает на вопросы бизнес-пользователей о модели данных в dbt.' },
+        { en: 'Build and own financial data models in Snowflake and dbt Cloud for Accounting and Capital Markets, translating business requirements into reliable reporting datasets.', ru: 'Разрабатываю и веду финансовые модели данных в Snowflake и dbt Cloud для бухгалтерии и Capital Markets — превращаю бизнес-требования в надёжные датасеты для отчётности.' },
+        { en: 'Designed a cash-flow reconciliation model and a Streamlit dashboard inside Snowflake to surface mismatches and support finance reconciliation workflows.', ru: 'Спроектировал модель сверки денежных потоков и Streamlit-дашборд внутри Snowflake, которые подсвечивают расхождения и поддерживают процессы финансовой сверки.' },
+        { en: 'Developed external reporting for Capital Markets lenders; reworked existing processes for reliability and maintainability while supporting critical Tableau reporting.', ru: 'Сделал внешнюю отчётность для кредиторов Capital Markets; переработал существующие процессы ради надёжности и поддерживаемости, поддерживаю критичную отчётность в Tableau.' },
+        { en: 'Partner with finance stakeholders and backend engineers on data issues; contribute to data-quality and AI-assisted analytics initiatives, including an LLM-based Slack assistant for the dbt data model.', ru: 'Разбираю проблемы в данных с финансовыми заказчиками и бэкенд-разработчиками; участвую в инициативах по качеству данных и AI-аналитике, включая Slack-ассистента на LLM по модели данных в dbt.' },
       ],
-      stack: ['dbt', 'SQL', 'Tableau', 'LLM'],
+      stack: ['Snowflake', 'dbt Cloud', 'Streamlit', 'Tableau', 'Monte Carlo', 'LLM'],
     },
     {
       company: 'SAMOLET Group',
@@ -129,9 +137,8 @@ export default {
       period: { en: 'Sep 2023 — Aug 2024', ru: 'сен 2023 — авг 2024' },
       location: { en: 'Tbilisi', ru: 'Тбилиси' },
       bullets: [
-        { en: 'Built SQL data sources for financial reporting, including monthly and yearly accounts-receivable reports.', ru: 'Строил источники данных на SQL для финансовой отчётности, включая ежемесячные и годовые отчёты по дебиторской задолженности.' },
-        { en: 'Developed new Tableau dashboards and optimized the performance of existing ones.', ru: 'Разрабатывал новые дашборды в Tableau и ускорял существующие.' },
-        { en: 'Administered Tableau Server: upgrades, load management, automation and performance tuning; alerts via the Webhooks and REST APIs; license management with the vendor.', ru: 'Администрировал Tableau Server: обновления, управление нагрузкой, автоматизация и тюнинг; алерты через Webhooks и REST API; лицензии и работа с вендором.' },
+        { en: 'Built C-level financial dashboards for P&L, cash flow, accounts receivable and debt across business units; developed SQL data sources and optimized Tableau performance.', ru: 'Построил финансовые дашборды для C-level: P&L, денежный поток, дебиторская задолженность и долг по бизнес-юнитам; разрабатывал источники данных на SQL и ускорял Tableau.' },
+        { en: 'Administered Tableau Server: upgrades, performance and load management, plugins and connectors, access coordination, licensing and REST / Webhook API integrations.', ru: 'Администрировал Tableau Server: обновления, производительность и нагрузка, плагины и коннекторы, доступы, лицензии и интеграции через REST / Webhook API.' },
       ],
       stack: ['Tableau', 'Tableau Server', 'SQL'],
     },
@@ -141,12 +148,10 @@ export default {
       period: { en: 'Apr 2023 — Oct 2023', ru: 'апр 2023 — окт 2023' },
       location: { en: 'Tbilisi', ru: 'Тбилиси' },
       bullets: [
-        { en: 'Deployed Airflow and designed a pipeline-factory structure.', ru: 'Развернул Airflow и спроектировал структуру pipeline factory.' },
-        { en: 'Built core data marts and migrated analytics scripts to Airflow.', ru: 'Построил основные витрины данных и перенёс аналитические скрипты в Airflow.' },
-        { en: 'Moved data uploads to Airflow together with developers, optimizing ingestion.', ru: 'Вместе с разработчиками перевёл загрузки данных в Airflow и оптимизировал ingestion.' },
-        { en: 'Reworked Tableau dashboards to make data more accessible for decision-making.', ru: 'Переработал дашборды в Tableau, чтобы данные были доступнее для принятия решений.' },
+        { en: 'Joined to establish an ELT foundation for the analytics database; deployed Airflow and created a reusable pipeline-factory structure.', ru: 'Пришёл, чтобы заложить ELT-фундамент для аналитической базы; развернул Airflow и сделал переиспользуемую структуру pipeline factory.' },
+        { en: 'Built ~30–40 MySQL-to-BigQuery ingestion pipelines and ~10–15 BigQuery mart pipelines, coordinating the migration of analytics workloads with developers.', ru: 'Построил ~30–40 пайплайнов загрузки MySQL → BigQuery и ~10–15 пайплайнов витрин в BigQuery, координируя с разработчиками перенос аналитических нагрузок.' },
       ],
-      stack: ['Airflow', 'Python', 'SQL', 'Tableau'],
+      stack: ['Airflow', 'BigQuery', 'MySQL', 'Python'],
     },
     {
       company: 'EPAM Systems',
@@ -154,10 +159,9 @@ export default {
       period: { en: 'May 2022 — Apr 2023', ru: 'май 2022 — апр 2023' },
       location: { en: 'Tbilisi', ru: 'Тбилиси' },
       bullets: [
-        { en: 'Supported existing reporting and built new dashboards.', ru: 'Поддерживал существующую отчётность и разрабатывал новые дашборды.' },
-        { en: 'Worked with Databricks, Python and the Tableau Document / Server APIs.', ru: 'Работал с Databricks, Python и Tableau Document / Server API.' },
+        { en: 'Maintained and optimized Tableau reporting, improving dashboard performance and supporting workflows built on Databricks, Python and Tableau APIs.', ru: 'Поддерживал и оптимизировал отчётность в Tableau: ускорял дашборды и поддерживал процессы на Databricks, Python и Tableau API.' },
       ],
-      stack: ['Databricks', 'Python', 'Tableau'],
+      stack: ['Tableau', 'Databricks', 'Python'],
     },
     {
       company: 'Uchi.ru',
@@ -165,20 +169,18 @@ export default {
       period: { en: 'Mar 2021 — Sep 2022', ru: 'мар 2021 — сен 2022' },
       location: { en: 'Tbilisi', ru: 'Тбилиси' },
       bullets: [
-        { en: 'Built Tableau dashboards from zero to production on top of Spark SQL and ClickHouse.', ru: 'Делал дашборды в Tableau от нуля до продакшена на Spark SQL и ClickHouse.' },
-        { en: 'Optimized the DWH architecture.', ru: 'Оптимизировал архитектуру DWH.' },
-        { en: 'Built automatic dashboard refreshes triggered by data-mart updates in the DWH via the Tableau Server REST API.', ru: 'Сделал автоматическое обновление дашбордов по факту обновления витрин в DWH через Tableau Server REST API.' },
+        { en: 'Cleaned up DWH model dependencies that caused inefficient Airflow DAG execution.', ru: 'Расчистил зависимости моделей в DWH, из-за которых DAG-и в Airflow выполнялись неэффективно.' },
+        { en: 'Built Tableau reporting on Spark SQL and ClickHouse, with automated refreshes based on DWH readiness via the Tableau REST API.', ru: 'Строил отчётность в Tableau на Spark SQL и ClickHouse с автоматическим обновлением по готовности DWH через Tableau REST API.' },
       ],
-      stack: ['Spark SQL', 'ClickHouse', 'Python', 'Tableau'],
+      stack: ['Tableau', 'Airflow', 'Spark SQL', 'ClickHouse', 'Python'],
     },
     {
       company: 'Tinkoff',
       role: { en: 'Business Intelligence Analyst', ru: 'Business Intelligence Analyst' },
       period: { en: 'Oct 2019 — Mar 2021', ru: 'окт 2019 — мар 2021' },
       bullets: [
-        { en: 'Built dashboards for the ATM and Payment Systems departments.', ru: 'Делал дашборды для департамента банкоматов и департамента платёжных систем.' },
-        { en: 'Optimized existing Greenplum queries.', ru: 'Оптимизировал существующие запросы в Greenplum.' },
-        { en: 'Automated Excel report mailings where a dashboard wasn’t needed.', ru: 'Автоматизировал рассылку Excel-отчётов там, где дашборд был не нужен.' },
+        { en: 'Built BI reporting for the ATM and Payments teams.', ru: 'Строил BI-отчётность для команд банкоматов и платежей.' },
+        { en: 'Optimized Greenplum SQL and automated recurring Excel reporting with Python across Greenplum, Spark SQL, ClickHouse and Tableau.', ru: 'Оптимизировал SQL в Greenplum и автоматизировал регулярную Excel-отчётность на Python поверх Greenplum, Spark SQL, ClickHouse и Tableau.' },
       ],
       stack: ['SQL', 'Greenplum', 'Spark SQL', 'ClickHouse', 'Python', 'Tableau'],
     },
@@ -187,8 +189,14 @@ export default {
   education: [
     {
       school: { en: 'HSE University (Higher School of Economics)', ru: 'НИУ ВШЭ (Высшая школа экономики)' },
-      degree: { en: 'Bachelor’s degree, Applied Mathematics', ru: 'Бакалавриат, прикладная математика' },
-      period: '2017 — 2019',
+      degree: { en: 'Applied Mathematics (coursework)', ru: 'Прикладная математика (обучение)' },
+      period: '2016 — 2020',
     },
+  ],
+
+  languages: [
+    { name: { en: 'Russian', ru: 'Русский' }, level: { en: 'native', ru: 'родной' } },
+    { name: { en: 'English', ru: 'Английский' }, level: { en: 'B2 · professional working', ru: 'B2 · рабочий' } },
+    { name: { en: 'Georgian', ru: 'Грузинский' }, level: { en: 'B1', ru: 'B1' } },
   ],
 };
