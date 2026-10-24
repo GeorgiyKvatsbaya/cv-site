@@ -10,6 +10,8 @@ Strings are `{ en, ru }`; anything starting with `TODO` is a placeholder and is 
 - **CV**: put `cv-en.pdf` / `cv-ru.pdf` into `public/` — the "Download CV" button appears automatically.
 - **Stack icons** come from [simple-icons](https://simpleicons.org) by slug. Brands missing there (dbt, Tableau, …) render as a text badge; drop `public/icons/<slug>.svg` to override (optional `data-hex="RRGGBB"` on `<svg>` sets the hover colour). Multicolour marks: give each `<path>` a `style="--c:#RRGGBB"` — monochrome at rest, real colours on hover. dbt comes from simple-icons 13.0.0; the Tableau mark is the multicolour logo from Wikipedia.
 - **Link previews (OG images)**: after changing name, role, tagline, featured stack or location, run `npm run og` and commit `public/og/` — the build warns when they are outdated.
+- **Theme**: follows the system; the toggle in the top bar cycles system → light → dark and remembers the choice (localStorage).
+- **Analytics**: Vercel Web Analytics (enable it in the Vercel dashboard). "Download CV" clicks are recorded as virtual pageviews `/cv-download/{en,ru}` — custom events need the Pro plan.
 - **Colours**: tokens at the top of [`src/style.css`](src/style.css) (`--accent` etc.), light theme in the `prefers-color-scheme: light` block.
 
 ## Run

@@ -22,6 +22,11 @@ const UI = {
   stackSub: { en: 'tools I use day to day', ru: 'инструменты, с которыми работаю каждый день' },
   years: { en: 'yrs', ru: 'лет' },
   langLabel: { en: 'Language', ru: 'Язык' },
+  theme: {
+    auto: { en: 'Theme: system (click for light)', ru: 'Тема: как в системе (нажмите — светлая)' },
+    light: { en: 'Theme: light (click for dark)', ru: 'Тема: светлая (нажмите — тёмная)' },
+    dark: { en: 'Theme: dark (click for system)', ru: 'Тема: тёмная (нажмите — как в системе)' },
+  },
   navLabel: { en: 'sections', ru: 'разделы' },
   notFound: { en: 'Page not found', ru: 'Страница не найдена' },
   backHome: { en: 'Back to home', ru: 'На главную' },
@@ -42,6 +47,9 @@ const ui = (ctx, key) => ctx.t(UI[key]);
 // ── Built-in line icons (not brands) ───────────────────────────
 const LINE = {
   arrow: '<polyline points="9 6 15 12 9 18"/>',
+  auto: '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>',
+  sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+  moon: '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>',
   download: '<path d="M12 3v12"/><polyline points="7 10 12 15 17 10"/><path d="M5 21h14"/>',
   mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/>',
 };
@@ -100,7 +108,9 @@ export function layout(ctx, { title, body, page }) {
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="${ctx.asset('style.css')}">
-  <script>document.documentElement.classList.add('js')</script>
+  <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+  <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)}</script>
+  <script defer src="/_vercel/insights/script.js"></script>
   <script src="${ctx.asset('main.js')}" defer></script>
 </head>
 <body>
@@ -135,8 +145,15 @@ function langSwitch(ctx) {
   ).join('')}</nav>`;
 }
 
+// Cycles system → light → dark; state lives in localStorage (see main.js + inline <head> script).
+function themeToggle(ctx) {
+  const labels = UI.theme;
+  return `<button type="button" class="theme-toggle" data-mode="auto" aria-label="${esc(ctx.t(labels.auto))}" title="${esc(ctx.t(labels.auto))}"
+        data-label-auto="${esc(ctx.t(labels.auto))}" data-label-light="${esc(ctx.t(labels.light))}" data-label-dark="${esc(ctx.t(labels.dark))}">${line('auto', 16).replace('class="line"', 'class="line i-auto"')}${line('sun', 16).replace('class="line"', 'class="line i-light"')}${line('moon', 16).replace('class="line"', 'class="line i-dark"')}</button>`;
+}
+
 function profileHeader(ctx, { title, tagline, avatar = true }) {
-  return `    ${langSwitch(ctx)}
+  return `    <div class="topbar">${themeToggle(ctx)}${langSwitch(ctx)}</div>
     <header class="profile">
       ${avatar ? `<div class="avatar" aria-hidden="true">${esc(ctx.site.monogram)}</div>` : ''}
       <h1>${esc(title)}</h1>
@@ -160,7 +177,7 @@ function ctaRow(ctx) {
   const { contact } = ctx.site;
   const btns = [];
   const cv = ctx.t(contact.cv);
-  if (cv && ctx.hasPublic(cv)) btns.push(`<a class="btn primary" href="${esc(cv)}" download>${line('download', 16)}${esc(ui(ctx, 'cv'))}</a>`);
+  if (cv && ctx.hasPublic(cv)) btns.push(`<a class="btn primary" href="${esc(cv)}" download data-track="/cv-download/${ctx.lang}">${line('download', 16)}${esc(ui(ctx, 'cv'))}</a>`);
   if (!ctx.isTodo(contact.email))
     btns.push(`<a class="btn" href="#" data-e="${encodeEmail(contact.email)}">${line('mail', 16)}${esc(ui(ctx, 'emailMe'))}</a>`);
   if (!ctx.isTodo(contact.linkedin))
