@@ -35,7 +35,7 @@ export default {
 
   contact: {
     email: 'TODO: you@example.com',
-    linkedin: 'TODO: https://www.linkedin.com/in/your-handle',
+    linkedin: 'https://www.linkedin.com/in/georgiy-kvatsbaya-ba0645230/',
     // Files in public/. A missing file hides the "CV" button (with a build warning).
     cv: { en: '/cv-en.pdf', ru: '/cv-ru.pdf' },
     note: {
@@ -47,7 +47,7 @@ export default {
   // Link cards on the home page. `icon`: simple-icons slug or a built-in: email, linkedin.
   links: [
     { icon: 'github', title: 'GitHub', sub: '@GeorgiyKvatsbaya', url: 'https://github.com/GeorgiyKvatsbaya' },
-    { icon: 'linkedin', title: 'LinkedIn', sub: { en: 'experience & recommendations', ru: 'опыт и рекомендации' }, url: 'TODO: https://www.linkedin.com/in/your-handle' },
+    { icon: 'linkedin', title: 'LinkedIn', sub: { en: 'experience & recommendations', ru: 'опыт и рекомендации' }, url: 'https://www.linkedin.com/in/georgiy-kvatsbaya-ba0645230/' },
     { icon: 'telegram', title: 'Telegram', sub: 'TODO: @handle', url: 'TODO: https://t.me/handle' },
     { icon: 'email', title: 'Email', sub: { en: 'for work inquiries', ru: 'по рабочим вопросам' }, email: true },
   ],
