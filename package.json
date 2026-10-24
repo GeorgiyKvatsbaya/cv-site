@@ -1,0 +1,17 @@
+{
+  "name": "cv-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal business-card site (EN/RU), static HTML built from content/site.mjs",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node --watch-path=src --watch-path=content --watch-path=public build.mjs --serve"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "simple-icons": "16.35.0"
+  }
+}
