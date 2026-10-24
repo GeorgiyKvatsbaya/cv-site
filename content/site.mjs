@@ -11,7 +11,7 @@
 
 export default {
   // Production URL without trailing slash — used for canonical / hreflang / OG.
-  siteUrl: 'https://cv-site-georgiykvatsbaya.vercel.app', // TODO: replace with the real Vercel URL or custom domain
+  siteUrl: 'https://georgiykvatsbaya.vercel.app',
 
   monogram: 'GK',
 
