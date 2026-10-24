@@ -9,6 +9,7 @@ Strings are `{ en, ru }`; anything starting with `TODO` is a placeholder and is 
 
 - **CV**: put `cv-en.pdf` / `cv-ru.pdf` into `public/` — the "Download CV" button appears automatically.
 - **Stack icons** come from [simple-icons](https://simpleicons.org) by slug. Brands missing there (dbt, Tableau, …) render as a text badge; drop `public/icons/<slug>.svg` to override (optional `data-hex="RRGGBB"` on `<svg>` sets the hover colour). Multicolour marks: give each `<path>` a `style="--c:#RRGGBB"` — monochrome at rest, real colours on hover. dbt comes from simple-icons 13.0.0; the Tableau mark is the multicolour logo from Wikipedia.
+- **Link previews (OG images)**: after changing name, role, tagline, featured stack or location, run `npm run og` and commit `public/og/` — the build warns when they are outdated.
 - **Colours**: tokens at the top of [`src/style.css`](src/style.css) (`--accent` etc.), light theme in the `prefers-color-scheme: light` block.
 
 ## Run
@@ -17,6 +18,7 @@ Strings are `{ en, ru }`; anything starting with `TODO` is a placeholder and is 
 npm install
 npm run dev     # http://localhost:3000, restarts on changes (refresh the page)
 npm run build   # → dist/
+npm run og      # regenerate link-preview images public/og/{en,ru}.png (needs local Chrome; CHROME=… to override path)
 ```
 
 ## Deploy

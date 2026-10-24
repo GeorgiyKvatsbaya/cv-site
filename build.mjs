@@ -2,10 +2,14 @@
 //   node build.mjs           build once
 //   node build.mjs --serve   build and serve dist/ on http://localhost:3000
 //                            (npm run dev restarts it on file changes)
+//   node build.mjs --og      regenerate public/og/<lang>.png with local Chrome, then build
 import fs from 'node:fs';
 import path from 'node:path';
 import http from 'node:http';
 import crypto from 'node:crypto';
+import os from 'node:os';
+import { execFileSync } from 'node:child_process';
+import { pathToFileURL } from 'node:url';
 import * as simpleIcons from 'simple-icons';
 import site from './content/site.mjs';
 import * as T from './src/templates.mjs';
@@ -76,6 +80,41 @@ function asset(name) {
 
 const hasPublic = (p) => fs.existsSync(path.join(PUBLIC, p.replace(/^\//, '')));
 
+// ── OG images: public/og/<lang>.png + hashes.json (hash of the card HTML they were made from) ──
+const OG_DIR = path.join(PUBLIC, 'og');
+const OG_HASHES = path.join(OG_DIR, 'hashes.json');
+const sha8 = (s) => crypto.createHash('sha1').update(s).digest('hex').slice(0, 8);
+const ogHashes = () => (fs.existsSync(OG_HASHES) ? JSON.parse(fs.readFileSync(OG_HASHES, 'utf8')) : {});
+
+function og(lang) {
+  const hash = ogHashes()[lang];
+  return hash && fs.existsSync(path.join(OG_DIR, `${lang}.png`)) ? { path: `/og/${lang}.png`, hash } : null;
+}
+
+function generateOg() {
+  const chrome = process.env.CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'cv-og-'));
+  fs.mkdirSync(OG_DIR, { recursive: true });
+  const hashes = {};
+  try {
+    for (const lang of T.LANGS) {
+      const html = T.ogCard(makeCtx(lang, 'home'));
+      const file = path.join(tmp, `${lang}.html`);
+      fs.writeFileSync(file, html);
+      execFileSync(chrome, [
+        '--headless=new', '--disable-gpu', '--hide-scrollbars', '--force-device-scale-factor=1',
+        `--user-data-dir=${path.join(tmp, 'profile')}`, '--virtual-time-budget=5000',
+        '--window-size=1200,630', `--screenshot=${path.join(OG_DIR, `${lang}.png`)}`, pathToFileURL(file).href,
+      ], { stdio: 'ignore' });
+      hashes[lang] = sha8(html);
+      console.log(`✓ og image → public/og/${lang}.png`);
+    }
+  } finally {
+    fs.rmSync(tmp, { recursive: true, force: true });
+  }
+  fs.writeFileSync(OG_HASHES, JSON.stringify(hashes, null, 2) + '\n');
+}
+
 function makeCtx(lang, page) {
   const t = (v) => {
     if (v == null || typeof v !== 'object' || Array.isArray(v)) return v ?? '';
@@ -83,7 +122,7 @@ function makeCtx(lang, page) {
     if (lang !== 'en' && v.en) warnings.add(`missing "${lang}" translation for: ${String(v.en).slice(0, 60)}`);
     return v.en ?? '';
   };
-  return { site, lang, page, t, icon, asset, isTodo, hasPublic };
+  return { site, lang, page, t, icon, asset, isTodo, hasPublic, og };
 }
 
 function write(rel, html) {
@@ -110,6 +149,12 @@ function build() {
   write('404.html', T.notFound(makeCtx('en', null)));
   pages.push('/404.html');
 
+  const stored = ogHashes();
+  for (const lang of T.LANGS) {
+    if (!og(lang)) warnings.add(`no OG image for "${lang}" — run: npm run og`);
+    else if (stored[lang] !== sha8(T.ogCard(makeCtx(lang, 'home')))) warnings.add(`OG image for "${lang}" is outdated (name/role/stack changed) — run: npm run og`);
+  }
+
   for (const [lang, p] of Object.entries(site.contact.cv ?? {}))
     if (p && !hasPublic(p)) warnings.add(`CV (${lang}) not found at public${p} — button hidden`);
 
@@ -122,6 +167,7 @@ function build() {
   if (warnings.size) console.log(`\n⚠ ${[...warnings].join('\n⚠ ')}`);
 }
 
+if (process.argv.includes('--og')) generateOg();
 build();
 
 // ── Dev server ───────────────────────────────────────────────

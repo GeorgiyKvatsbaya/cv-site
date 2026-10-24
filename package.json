@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "node build.mjs",
-    "dev": "node --watch-path=src --watch-path=content --watch-path=public build.mjs --serve"
+    "dev": "node --watch-path=src --watch-path=content --watch-path=public build.mjs --serve",
+    "og": "node build.mjs --og"
   },
   "engines": {
     "node": ">=20"
