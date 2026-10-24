@@ -35,9 +35,12 @@ function icon(slug) {
   let result = null;
   const override = path.join(PUBLIC, 'icons', `${slug}.svg`);
   if (fs.existsSync(override)) {
-    const svg = fs.readFileSync(override, 'utf8').replace(/<\?xml[^>]*>\s*/, '').trim()
+    const raw = fs.readFileSync(override, 'utf8');
+    const svg = raw.replace(/<\?xml[^>]*>\s*/, '').replace(/<!--[\s\S]*?-->\s*/g, '').trim()
+      .replace(/\sdata-hex="[^"]*"/, '')
       .replace('<svg', '<svg aria-hidden="true" focusable="false"');
-    result = { svg, hex: null };
+    // Optional brand colour for hover: <svg data-hex="FF694B" …>
+    result = { svg, hex: raw.match(/data-hex="([0-9a-fA-F]{6})"/)?.[1] ?? null };
   } else {
     const si = simpleIcons[`si${slug.charAt(0).toUpperCase()}${slug.slice(1)}`];
     if (si) {

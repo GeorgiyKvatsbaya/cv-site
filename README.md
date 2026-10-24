@@ -8,7 +8,7 @@ Everything lives in [`content/site.mjs`](content/site.mjs): profile, highlights,
 Strings are `{ en, ru }`; anything starting with `TODO` is a placeholder and is listed by the build.
 
 - **CV**: put `cv-en.pdf` / `cv-ru.pdf` into `public/` — the "Download CV" button appears automatically.
-- **Stack icons** come from [simple-icons](https://simpleicons.org) by slug. Brands missing there (dbt, Tableau, …) render as a text badge; drop `public/icons/<slug>.svg` to override.
+- **Stack icons** come from [simple-icons](https://simpleicons.org) by slug. Brands missing there (dbt, Tableau, …) render as a text badge; drop `public/icons/<slug>.svg` to override (optional `data-hex="RRGGBB"` on `<svg>` sets the hover colour). dbt and Tableau are taken from simple-icons 13.0.0, before their removal.
 - **Colours**: tokens at the top of [`src/style.css`](src/style.css) (`--accent` etc.), light theme in the `prefers-color-scheme: light` block.
 
 ## Run
