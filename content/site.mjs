@@ -62,6 +62,27 @@ export default {
     { icon: 'telegram', title: 'Telegram', sub: '@kvatsbaya', url: 'https://t.me/kvatsbaya' },
   ],
 
+  // Project cards on the home page. `url` may be per language; `image` / `imageDark` are files in public/
+  // (light and dark screenshots, shown to match the theme).
+  projects: [
+    {
+      name: 'Georgia in Numbers',
+      url: { en: 'https://georgia-in-numbers.vercel.app/en', ru: 'https://georgia-in-numbers.vercel.app/ru' },
+      repo: 'https://github.com/GeorgiyKvatsbaya/georgia-in-numbers',
+      image: '/projects/georgia-in-numbers-light.jpg',
+      imageDark: '/projects/georgia-in-numbers-dark.jpg',
+      summary: {
+        en: 'Open analytics over official Georgian statistics in English, Georgian and Russian: inflation, wages, jobs, GDP, trade, population, shop prices for 100+ products and regional maps.',
+        ru: 'Открытая аналитика по официальной статистике Грузии на английском, грузинском и русском: инфляция, зарплаты, занятость, ВВП, торговля, население, цены на 100+ товаров и карты регионов.',
+      },
+      bullets: [
+        { en: 'Python + DuckDB pipeline over three Geostat APIs (PXWeb, Prices, GeoMap) with data-quality and cross-source checks.', ru: 'Пайплайн на Python + DuckDB поверх трёх API Geostat (PXWeb, Prices, GeoMap) с проверками качества данных и сверкой между источниками.' },
+        { en: 'Interactive dashboards with filters, choropleth maps, table view and CSV export for every chart.', ru: 'Интерактивные дашборды с фильтрами, картами регионов, табличным видом и выгрузкой в CSV для каждого графика.' },
+      ],
+      stack: ['Python', 'DuckDB', 'React', 'TypeScript', 'ECharts', 'Vercel'],
+    },
+  ],
+
   // Grouped stack. `featured: true` items show up as icons on the home page (8 fit one row on desktop).
   stack: [
     {

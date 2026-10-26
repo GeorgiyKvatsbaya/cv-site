@@ -8,6 +8,7 @@ Everything lives in [`content/site.mjs`](content/site.mjs): profile, highlights,
 Strings are `{ en, ru }`; anything starting with `TODO` is a placeholder and is listed by the build.
 
 - **CV**: put `cv-en.pdf` / `cv-ru.pdf` into `public/` — the "Download CV" button appears automatically.
+- **Projects**: cards on the home page from `projects` in `content/site.mjs`. Screenshots go to `public/projects/` as a light/dark pair (1280×800 JPEG); the one matching the theme is shown.
 - **Stack icons** come from [simple-icons](https://simpleicons.org) by slug. Brands missing there (dbt, Tableau, …) render as a text badge; drop `public/icons/<slug>.svg` to override (optional `data-hex="RRGGBB"` on `<svg>` sets the hover colour). Multicolour marks: give each `<path>` a `style="--c:#RRGGBB"` — monochrome at rest, real colours on hover. dbt comes from simple-icons 13.0.0; the Tableau mark is the multicolour logo from Wikipedia.
 - **Link previews (OG images)**: after changing name, role, tagline, featured stack or location, run `npm run og` and commit `public/og/` — the build warns when they are outdated.
 - **Theme**: follows the system; the toggle in the top bar cycles system → light → dark and remembers the choice (localStorage).

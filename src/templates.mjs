@@ -13,6 +13,9 @@ const UI = {
   stack: { en: 'stack', ru: 'стек' },
   fullStack: { en: 'full stack', ru: 'весь стек' },
   links: { en: 'links', ru: 'ссылки' },
+  projects: { en: 'projects', ru: 'проекты' },
+  openSite: { en: 'Open site', ru: 'Открыть сайт' },
+  sourceCode: { en: 'Source code', ru: 'Исходный код' },
   contact: { en: 'contact', ru: 'контакты' },
   experienceTitle: { en: 'Experience', ru: 'Опыт' },
   experienceSub: { en: 'where I worked and what I shipped', ru: 'где работал и что сделал' },
@@ -51,6 +54,7 @@ const LINE = {
   sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
   moon: '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>',
   download: '<path d="M12 3v12"/><polyline points="7 10 12 15 17 10"/><path d="M5 21h14"/>',
+  external: '<path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/>',
   mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/>',
 };
 export const line = (name, size = 18) =>
@@ -213,6 +217,28 @@ function linkCard(ctx, l) {
         </a>`;
 }
 
+// Screenshot (light/dark pair, CSS shows the one matching the theme) + summary, bullets, stack, links.
+function projectCard(ctx, p) {
+  const url = ctx.t(p.url);
+  const ext = 'target="_blank" rel="noopener noreferrer"';
+  const img = (src, cls) => src && ctx.hasPublic(src)
+    ? `<img class="${cls}" src="${esc(src)}" alt="" width="1280" height="800" loading="lazy" decoding="async">` : '';
+  const shots = img(p.image, 'light') + img(p.imageDark, 'dark');
+  return `<article class="project">
+        ${shots ? `<a class="shot" href="${esc(url)}" ${ext} tabindex="-1" aria-hidden="true">${shots}</a>` : ''}
+        <div class="project-body">
+          <h3><a href="${esc(url)}" ${ext}>${esc(p.name)}</a></h3>
+          <p class="lead">${esc(ctx.t(p.summary))}</p>
+          ${p.bullets?.length ? `<ul class="bullets">\n            ${p.bullets.map((b) => `<li>${esc(ctx.t(b))}</li>`).join('\n            ')}\n          </ul>` : ''}
+          ${p.stack?.length ? `<p class="chips">${p.stack.map((s) => `<span class="chip">${esc(s)}</span>`).join('')}</p>` : ''}
+          <div class="project-links">
+            <a class="btn primary" href="${esc(url)}" ${ext}>${line('external', 16)}${esc(ui(ctx, 'openSite'))}</a>
+            ${p.repo ? `<a class="btn" href="${esc(p.repo)}" ${ext}>${glyph(ctx, 'github', 'GitHub')}${esc(ui(ctx, 'sourceCode'))}</a>` : ''}
+          </div>
+        </div>
+      </article>`;
+}
+
 export function home(ctx) {
   const { site } = ctx;
   const featured = site.stack.flatMap((g) => g.items).filter((i) => i.featured);
@@ -222,6 +248,9 @@ export function home(ctx) {
     ctaRow(ctx),
     nav(ctx),
     section(ui(ctx, 'about'), `      <p class="lead">${esc(ctx.t(site.about))}</p>\n      <p class="note">${esc(ctx.t(site.profile.location))}</p>\n${highlights(ctx)}`),
+    site.projects?.length
+      ? section(ui(ctx, 'projects'), `      ${site.projects.map((p) => projectCard(ctx, p)).join('\n      ')}`)
+      : '',
     section(
       ui(ctx, 'stack'),
       `      <ul class="tiles">\n        ${featured.map((i) => stackTile(ctx, i)).join('\n        ')}\n      </ul>

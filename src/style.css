@@ -232,6 +232,28 @@ a.card:hover, a.card:focus-visible { transform: translateY(-2px); border-color: 
 .card .line { color: var(--faint); flex: none; }
 .card .badge-glyph:not([data-len="1"]), .row .badge-glyph:not([data-len="1"]) { font-size: 8.5px; border-radius: 5px; }
 
+/* ── Projects ───────────────────────────────────────────────── */
+.project { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.project + .project { margin-top: 12px; }
+.shot { display: block; border-bottom: 1px solid var(--border); background: var(--surface-2); overflow: hidden; }
+.shot img { width: 100%; height: auto; transition: transform .3s ease; }
+.shot:hover img { transform: scale(1.015); }
+/* Screenshot pair follows the same theme rules as the tokens above (dark by default). */
+.shot .light { display: none; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .shot .light { display: block; }
+  :root:not([data-theme="dark"]) .shot .dark { display: none; }
+}
+:root[data-theme="light"] .shot .light { display: block; }
+:root[data-theme="light"] .shot .dark { display: none; }
+.project-body { padding: 16px 18px 18px; }
+.project h3 { margin: 0 0 6px; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+.project h3 a:hover { color: var(--accent); }
+.project .lead { font-size: 14.5px; color: var(--muted); }
+.project .bullets { margin-top: 10px; }
+.project-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+@media (prefers-reduced-motion: reduce) { .shot img { transition: none; } .shot:hover img { transform: none; } }
+
 /* ── Specs (stack page) ─────────────────────────────────────── */
 .specs { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
 .specs .row { display: flex; align-items: center; gap: 13px; padding: 12px 15px; }

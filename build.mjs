@@ -173,7 +173,7 @@ build();
 // ── Dev server ───────────────────────────────────────────────
 if (process.argv.includes('--serve')) {
   const PORT = Number(process.env.PORT) || 3000;
-  const TYPES = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.pdf': 'application/pdf', '.png': 'image/png', '.txt': 'text/plain' };
+  const TYPES = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.pdf': 'application/pdf', '.png': 'image/png', '.jpg': 'image/jpeg', '.txt': 'text/plain' };
   http.createServer((req, res) => {
     const urlPath = decodeURIComponent(new URL(req.url, 'http://x').pathname);
     let file = path.join(DIST, urlPath);
