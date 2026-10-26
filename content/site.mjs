@@ -62,7 +62,7 @@ export default {
     { icon: 'telegram', title: 'Telegram', sub: '@kvatsbaya', url: 'https://t.me/kvatsbaya' },
   ],
 
-  // Project cards on the home page. `url` may be per language; `image` / `imageDark` are files in public/
+  // Cards on the Projects page. `url` may be per language; `image` / `imageDark` are files in public/
   // (light and dark screenshots, shown to match the theme).
   projects: [
     {

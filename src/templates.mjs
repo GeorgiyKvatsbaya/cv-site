@@ -3,17 +3,18 @@
 // built in build.mjs.
 
 export const LANGS = ['en', 'ru'];
-export const PAGES = ['home', 'experience', 'stack'];
+export const PAGES = ['home', 'experience', 'projects', 'stack'];
 
 const UI = {
-  nav: { home: { en: 'Home', ru: 'Главная' }, experience: { en: 'Experience', ru: 'Опыт' }, stack: { en: 'Stack', ru: 'Стек' } },
+  nav: { home: { en: 'Home', ru: 'Главная' }, experience: { en: 'Experience', ru: 'Опыт' }, projects: { en: 'Projects', ru: 'Проекты' }, stack: { en: 'Stack', ru: 'Стек' } },
   cv: { en: 'Download CV', ru: 'Скачать CV' },
   emailMe: { en: 'Email me', ru: 'Написать' },
   about: { en: 'about', ru: 'о себе' },
   stack: { en: 'stack', ru: 'стек' },
   fullStack: { en: 'full stack', ru: 'весь стек' },
   links: { en: 'links', ru: 'ссылки' },
-  projects: { en: 'projects', ru: 'проекты' },
+  projectsTitle: { en: 'Projects', ru: 'Проекты' },
+  projectsSub: { en: 'things I built outside work', ru: 'что я сделал вне работы' },
   openSite: { en: 'Open site', ru: 'Открыть сайт' },
   sourceCode: { en: 'Source code', ru: 'Исходный код' },
   contact: { en: 'contact', ru: 'контакты' },
@@ -248,9 +249,6 @@ export function home(ctx) {
     ctaRow(ctx),
     nav(ctx),
     section(ui(ctx, 'about'), `      <p class="lead">${esc(ctx.t(site.about))}</p>\n      <p class="note">${esc(ctx.t(site.profile.location))}</p>\n${highlights(ctx)}`),
-    site.projects?.length
-      ? section(ui(ctx, 'projects'), `      ${site.projects.map((p) => projectCard(ctx, p)).join('\n      ')}`)
-      : '',
     section(
       ui(ctx, 'stack'),
       `      <ul class="tiles">\n        ${featured.map((i) => stackTile(ctx, i)).join('\n        ')}\n      </ul>
@@ -294,6 +292,17 @@ export function experience(ctx) {
     languages,
   ].filter(Boolean).join('\n\n');
   return layout(ctx, { title: `${ui(ctx, 'experienceTitle')} — ${ctx.t(site.profile.name)}`, body, page: 'experience' });
+}
+
+// ── Projects ──────────────────────────────────────────────────
+export function projects(ctx) {
+  const { site } = ctx;
+  const body = [
+    profileHeader(ctx, { title: ui(ctx, 'projectsTitle'), tagline: esc(ui(ctx, 'projectsSub')), avatar: false }),
+    nav(ctx),
+    `    <div class="projects reveal">\n      ${(site.projects ?? []).map((p) => projectCard(ctx, p)).join('\n      ')}\n    </div>`,
+  ].join('\n\n');
+  return layout(ctx, { title: `${ui(ctx, 'projectsTitle')} — ${ctx.t(site.profile.name)}`, body, page: 'projects' });
 }
 
 // ── Stack ─────────────────────────────────────────────────────
