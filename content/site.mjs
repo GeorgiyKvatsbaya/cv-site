@@ -66,6 +66,22 @@ export default {
   // (light and dark screenshots, shown to match the theme).
   projects: [
     {
+      name: 'World Trade Atlas',
+      url: { en: 'https://world-trade-atlas-one.vercel.app/en', ru: 'https://world-trade-atlas-one.vercel.app/ru' },
+      repo: 'https://github.com/GeorgiyKvatsbaya/world-trade-atlas',
+      image: '/projects/world-trade-atlas-light.jpg',
+      imageDark: '/projects/world-trade-atlas-dark.jpg',
+      summary: {
+        en: 'Who trades what with whom: goods trade between 200+ countries since 1995, by product, with monthly updates — a world map, country and product profiles, bilateral views. In English and Russian.',
+        ru: 'Кто, чем и с кем торгует: торговля товарами между 200+ странами с 1995 года по товарам, с ежемесячным обновлением — карта мира, профили стран и товаров, двусторонние связи. На английском и русском.',
+      },
+      bullets: [
+        { en: 'dbt + DuckDB over 270M rows (CEPII BACI, IMF): staging → marts, incremental fact, enforced contracts, unit and reconciliation tests, published dbt docs with lineage.', ru: 'dbt + DuckDB на 270 млн строк (CEPII BACI, МВФ): staging → marts, инкрементальный факт, контракты моделей, unit- и сверочные тесты, опубликованная документация dbt с lineage.' },
+        { en: 'Revealed comparative advantage, concentration (HHI) and a BACI-vs-IMF source comparison; IMF months refreshed by GitHub Actions.', ru: 'Выявленное сравнительное преимущество, концентрация (HHI) и сравнение источников BACI и МВФ; месячные данные МВФ обновляются через GitHub Actions.' },
+      ],
+      stack: ['dbt', 'DuckDB', 'SQL', 'Python', 'React', 'ECharts'],
+    },
+    {
       name: 'Georgia in Numbers',
       url: { en: 'https://georgia-in-numbers.vercel.app/en', ru: 'https://georgia-in-numbers.vercel.app/ru' },
       repo: 'https://github.com/GeorgiyKvatsbaya/georgia-in-numbers',
